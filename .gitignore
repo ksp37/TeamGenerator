@@ -5,3 +5,4 @@ Homestead.json
 /nbproject/private/
 .DS_Store
 .env
+config/database.php
