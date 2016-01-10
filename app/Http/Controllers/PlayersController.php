@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class PlayersController extends Controller
 {
@@ -42,6 +42,8 @@ class PlayersController extends Controller
     public function rate(Request $request)
     {
         $players = \App\PlayerInfo::all();
+        
+        //Valid rating is an integer between 1 and 99.
         foreach ($players as $player)
         {
             $playerVald[$player->name] = 'integer|between:1,99';
@@ -49,6 +51,7 @@ class PlayersController extends Controller
         
         $this->validate($request, $playerVald, $this->m_errMessages);
 
+        //Store ratings for the players.
         foreach ($players as $player)
         {
             if($request->has($player->name))
@@ -60,8 +63,7 @@ class PlayersController extends Controller
                 $weeklyRating = new \App\UserRating();
                 $weeklyRating->score_id = $score->id; 
                 $weeklyRating->player_id = $player->id;
-                //for testing only. Should be something like = Auth::user()->id
-                $weeklyRating->user_id = 2;
+                $weeklyRating->user_id = Auth::user()->id;
                 $weeklyRating->save();
             }
         }
