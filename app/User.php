@@ -44,4 +44,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Task::class);
     }
+    
+    public function weeklyRatings()
+    {
+        return $this->hasMany('App\UserRating', 'user_id', 'id');
+    }
 }
