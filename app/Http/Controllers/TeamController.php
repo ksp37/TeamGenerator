@@ -44,6 +44,7 @@ class TeamController extends Controller
      */
     public function index()
     {
+        // TODO
     }
 
     /**
@@ -67,6 +68,7 @@ class TeamController extends Controller
         $squad = $request->input("squadSel");
         $ratingDiff = $request->input("ratingDiff");
         
+        //Validate the squad selection by the user
         $firstValidator = Validator::make(
             array(
                 'squadSel' => $squad
@@ -88,6 +90,7 @@ class TeamController extends Controller
             ->withErrors($firstValidator);
         }
         
+        //Generate teams and return view displaying them.
         $squadAvgs = $this->itsPlayerRepository->avgScoreForPlayers($squad);
         $teams = $this->itsTeamGenerator->GetTeamsForRatingDiff($squadAvgs, $ratingDiff);
         return view('teams.generated', ['teams' => $teams]);
@@ -113,6 +116,8 @@ class TeamController extends Controller
     {
         $teamOne = $request->input("teamOne");
         $teamTwo = $request->input("teamTwo");
+        
+        //Validate the squad selection by the user.
         $firstValidator = Validator::make(
             array(
                 'teamOne' => $teamOne
@@ -153,6 +158,8 @@ class TeamController extends Controller
             return redirect('teams/choose')
             ->withErrors($secondValidator);
         }        
+        
+        //Get player averages and calculate the rating difference between the two teams. 
         $teamOneAvgs = $this->itsPlayerRepository->avgScoreForPlayers($teamOne);
         $teamTwoAvgs = $this->itsPlayerRepository->avgScoreForPlayers($teamTwo);
         $ratingDiff = $this->itsTeamGenerator->GetRatingDiffForTeams($teamOneAvgs, $teamTwoAvgs);

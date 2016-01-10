@@ -2,6 +2,9 @@
 
 namespace App\Logic;
 
+/**
+ * Class to store a pair of teams.
+ */
 class TeamCombination
 {
     public $itsFirstTeam = array();
@@ -10,9 +13,12 @@ class TeamCombination
     public $itsRatingDifference = NULL;
 };
 
+/**
+ * Class containing methods to generate and score teams. 
+ */
 class TeamLogic
 {
-    
+    //Comparison function used to sort teams by rating difference.
     private static function RatingComp(TeamCombination $teamOne, TeamCombination $teamTwo)
     {
         if($teamOne->itsRatingDifference == $teamTwo->itsRatingDifference)

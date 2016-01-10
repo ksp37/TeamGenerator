@@ -9,7 +9,7 @@
 				</div>
 
 				<div class="panel-body">
-					Another Thing
+					This is the Team Generator web app! You can sign up, rate players in your squad and generate teams!
 				</div>
 			</div>
 		</div>

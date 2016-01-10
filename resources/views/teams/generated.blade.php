@@ -6,7 +6,7 @@
 <!--  <link rel="stylesheet" type="text/css" href="../private/css/errorcss.css"/>-->
   <div class="container">
   <div class="page-header">
-    <h1>Rating Difference for Chosen Teams</h1>      
+    <h1>Rating Difference for Generated Teams</h1>      
   </div>
     <p>The rating difference between the teams is specified below:</p> 
     @foreach ($teams as $team) 

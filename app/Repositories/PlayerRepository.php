@@ -8,19 +8,13 @@ use DB;
 
 class PlayerRepository
 {
+
     /**
-     * Get all of the tasks for a given user.
-     *
-     * @param  User  $user
-     * @return Collection
+     * Returns the average score of players in $playerNames. If a player has
+     * not been rated, a default score of 50 is assigned to that player.
+     * @param array $playerNames array containing names of players
+     * @return array containing averages in form playerName => playerAvg.
      */
-    public function forUser(User $user)
-    {
-        return Task::where('user_id', $user->id)
-                    ->orderBy('created_at', 'asc')
-                    ->get();
-    }
-    
     public function avgScoreForPlayers(array $playerNames)
     {
         $avgScoreResult = PlayerInfo::whereIn('name', $playerNames)
